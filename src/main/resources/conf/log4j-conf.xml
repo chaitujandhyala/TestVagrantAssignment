@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "/WEB-INF/dtd/log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	 
+	<appender name="AllLogFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webApp.root}/../logs/AllLogFile.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p][%d{yyyy-MM-dd HH:mm:ss SSS\}][%t] %c{3\} - %m%n" />
+		</layout>
+	</appender>
+
+	 
+	<appender name="StdoutLogger" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p][%d{yyyy-MM-dd HH:mm:ss SSS\}][%t] %c{3\} - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- only for sql -->
+	<appender name="SqlLogFile" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${webApp.root}/../logs/SqlLogFile.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p][%d{yyyy-MM-dd HH:mm:ss SSS\}][%t] %c{3\} - %m%n" />
+		</layout>
+	</appender>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="AllLogFile" />
+		<appender-ref ref="StdoutLogger" />
+	</root>
+	
+	<logger name="com.ibatis" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SqlLogFile" />
+	</logger>
+
+	<logger name="java.sql.Connection" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SqlLogFile" />
+	</logger>
+
+	<logger name="java.sql.Statement" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SqlLogFile" />
+	</logger>
+
+	<logger name="java.sql.PreparedStatement" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SqlLogFile" />
+	</logger>
+
+	<logger name="java.sql.ResultSet" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="SqlLogFile" />
+	</logger>
+
+</log4j:configuration>  

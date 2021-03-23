@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestVagrant_Assignment_TestSuite" verbose="1" parallel="tests"
+	thread-count="1" preserve-order="true">
+	
+	<listeners>
+		<listener class-name="com.testvagrant.assignment.Listeners.CaptureScreenShot" />
+	</listeners>
+
+	<test name="Weather_Report_Tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.testvagrant.assignment.qa.test.WeatherReportingComparatorTest">
+				<methods>
+					<include name="testThatValidateWeatherReport" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
